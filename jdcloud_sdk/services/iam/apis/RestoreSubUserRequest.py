@@ -19,37 +19,25 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class DescribeAttachedGroupPoliciesRequest(JDCloudRequest):
+class RestoreSubUserRequest(JDCloudRequest):
     """
-    列举用户组的策略
+    恢复已删除子用户
     """
 
     def __init__(self, parameters, header=None, version="v1"):
-        super(DescribeAttachedGroupPoliciesRequest, self).__init__(
-            '/group/{groupName}/policies', 'GET', header, version)
+        super(RestoreSubUserRequest, self).__init__(
+            '/subUser:restore', 'GET', header, version)
         self.parameters = parameters
 
 
-class DescribeAttachedGroupPoliciesParameters(object):
+class RestoreSubUserParameters(object):
 
-    def __init__(self,groupName, ):
+    def __init__(self,account, subUserPin):
         """
-        :param groupName: 用户组名称
+        :param account: 主用户pin
+        :param subUserPin: 子用户pin
         """
 
-        self.groupName = groupName
-        self.pageNumber = None
-        self.pageSize = None
-
-    def setPageNumber(self, pageNumber):
-        """
-        :param pageNumber: (Optional) 页码，默认1
-        """
-        self.pageNumber = pageNumber
-
-    def setPageSize(self, pageSize):
-        """
-        :param pageSize: (Optional) 分页大小，默认50，取值范围[10, 100]
-        """
-        self.pageSize = pageSize
+        self.account = account
+        self.subUserPin = subUserPin
 
