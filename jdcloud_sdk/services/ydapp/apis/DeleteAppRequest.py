@@ -19,39 +19,23 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class DescribePodsRequest(JDCloudRequest):
+class DeleteAppRequest(JDCloudRequest):
     """
-    支持分页查询的Pod列表获取
+    根据应用 ID 删除应用
     """
 
     def __init__(self, parameters, header=None, version="v1"):
-        super(DescribePodsRequest, self).__init__(
-            '/app/{appId}/group/{groupId}/pods', 'GET', header, version)
+        super(DeleteAppRequest, self).__init__(
+            '/app/{appId}', 'DELETE', header, version)
         self.parameters = parameters
 
 
-class DescribePodsParameters(object):
+class DeleteAppParameters(object):
 
-    def __init__(self,appId, groupId, ):
+    def __init__(self,appId):
         """
         :param appId: 应用ID
-        :param groupId: 分组ID
         """
 
         self.appId = appId
-        self.groupId = groupId
-        self.pageNum = None
-        self.pageSize = None
-
-    def setPageNum(self, pageNum):
-        """
-        :param pageNum: (Optional) 页码
-        """
-        self.pageNum = pageNum
-
-    def setPageSize(self, pageSize):
-        """
-        :param pageSize: (Optional) 每页数量，默认10，最大100
-        """
-        self.pageSize = pageSize
 

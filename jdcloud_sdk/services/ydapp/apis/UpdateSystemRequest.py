@@ -19,44 +19,37 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class DescribeCustomImagesRequest(JDCloudRequest):
+class UpdateSystemRequest(JDCloudRequest):
     """
-    支持分页查询和版本过滤的镜像列表获取
+    根据系统 ID 修改系统详情
     """
 
     def __init__(self, parameters, header=None, version="v1"):
-        super(DescribeCustomImagesRequest, self).__init__(
-            '/app/{appId}/customImages', 'GET', header, version)
+        super(UpdateSystemRequest, self).__init__(
+            '/system/{systemId}', 'PUT', header, version)
         self.parameters = parameters
 
 
-class DescribeCustomImagesParameters(object):
+class UpdateSystemParameters(object):
 
-    def __init__(self,appId, ):
+    def __init__(self,systemId, ):
         """
-        :param appId: 应用ID，E.g.，app-123456789
+        :param systemId: 系统ID
         """
 
-        self.appId = appId
-        self.pageNum = None
-        self.pageSize = None
-        self.version = None
+        self.systemId = systemId
+        self.systemName = None
+        self.description = None
 
-    def setPageNum(self, pageNum):
+    def setSystemName(self, systemName):
         """
-        :param pageNum: (Optional) 页码，E.g.，6
+        :param systemName: (Optional) 系统中文名
         """
-        self.pageNum = pageNum
+        self.systemName = systemName
 
-    def setPageSize(self, pageSize):
+    def setDescription(self, description):
         """
-        :param pageSize: (Optional) 每页数量，默认10，最大100
+        :param description: (Optional) 应用描述
         """
-        self.pageSize = pageSize
-
-    def setVersion(self, version):
-        """
-        :param version: (Optional) 镜像版本，E.g.，busybox-v1.0.0
-        """
-        self.version = version
+        self.description = description
 

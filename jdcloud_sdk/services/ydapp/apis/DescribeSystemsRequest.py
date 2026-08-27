@@ -19,32 +19,29 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class DescribeCustomImagesRequest(JDCloudRequest):
+class DescribeSystemsRequest(JDCloudRequest):
     """
-    支持分页查询和版本过滤的镜像列表获取
+    分页查询系统列表
     """
 
     def __init__(self, parameters, header=None, version="v1"):
-        super(DescribeCustomImagesRequest, self).__init__(
-            '/app/{appId}/customImages', 'GET', header, version)
+        super(DescribeSystemsRequest, self).__init__(
+            '/systems:page', 'POST', header, version)
         self.parameters = parameters
 
 
-class DescribeCustomImagesParameters(object):
+class DescribeSystemsParameters(object):
 
-    def __init__(self,appId, ):
+    def __init__(self,):
         """
-        :param appId: 应用ID，E.g.，app-123456789
         """
 
-        self.appId = appId
         self.pageNum = None
         self.pageSize = None
-        self.version = None
 
     def setPageNum(self, pageNum):
         """
-        :param pageNum: (Optional) 页码，E.g.，6
+        :param pageNum: (Optional) 页码，默认1
         """
         self.pageNum = pageNum
 
@@ -53,10 +50,4 @@ class DescribeCustomImagesParameters(object):
         :param pageSize: (Optional) 每页数量，默认10，最大100
         """
         self.pageSize = pageSize
-
-    def setVersion(self, version):
-        """
-        :param version: (Optional) 镜像版本，E.g.，busybox-v1.0.0
-        """
-        self.version = version
 
