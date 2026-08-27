@@ -19,18 +19,18 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class WorkspaceGetByResourceRequest(JDCloudRequest):
+class GetJmrConfigsRequest(JDCloudRequest):
     """
-    获取资源组code被绑定的工作空间
+    通过计算引擎Code查询绑定的JMR引擎配置信息(支持按类型过滤)
     """
 
     def __init__(self, parameters, header=None, version="v2"):
-        super(WorkspaceGetByResourceRequest, self).__init__(
-            '/regions/{regionId}/apps/{appName}/workspaceGetByResource', 'POST', header, version)
+        super(GetJmrConfigsRequest, self).__init__(
+            '/regions/{regionId}/apps/{appName}/getJmrConfigs', 'POST', header, version)
         self.parameters = parameters
 
 
-class WorkspaceGetByResourceParameters(object):
+class GetJmrConfigsParameters(object):
 
     def __init__(self,regionId, appName, ):
         """
@@ -40,39 +40,25 @@ class WorkspaceGetByResourceParameters(object):
 
         self.regionId = regionId
         self.appName = appName
-        self.id = None
-        self.workspaceCode = None
-        self.projectCode = None
-        self.resourceCode = None
         self.engineCode = None
-
-    def setId(self, id):
-        """
-        :param id: (Optional) 
-        """
-        self.id = id
-
-    def setWorkspaceCode(self, workspaceCode):
-        """
-        :param workspaceCode: (Optional) 
-        """
-        self.workspaceCode = workspaceCode
-
-    def setProjectCode(self, projectCode):
-        """
-        :param projectCode: (Optional) 
-        """
-        self.projectCode = projectCode
-
-    def setResourceCode(self, resourceCode):
-        """
-        :param resourceCode: (Optional) 
-        """
-        self.resourceCode = resourceCode
+        self.configType = None
+        self.env = None
 
     def setEngineCode(self, engineCode):
         """
-        :param engineCode: (Optional) 存算引擎实例编码
+        :param engineCode: (Optional) 计算引擎Code
         """
         self.engineCode = engineCode
+
+    def setConfigType(self, configType):
+        """
+        :param configType: (Optional) 配置类型(如 core-site, hdfs-site 等，为空返回全部)
+        """
+        self.configType = configType
+
+    def setEnv(self, env):
+        """
+        :param env: (Optional) 环境类型(dev/prod)
+        """
+        self.env = env
 

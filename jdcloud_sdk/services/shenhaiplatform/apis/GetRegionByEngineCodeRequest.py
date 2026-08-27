@@ -19,18 +19,18 @@
 from jdcloud_sdk.core.jdcloudrequest import JDCloudRequest
 
 
-class WorkspaceGetByResourceRequest(JDCloudRequest):
+class GetRegionByEngineCodeRequest(JDCloudRequest):
     """
-    获取资源组code被绑定的工作空间
+    根据存算引擎实例编码查询对应的regionId
     """
 
     def __init__(self, parameters, header=None, version="v2"):
-        super(WorkspaceGetByResourceRequest, self).__init__(
-            '/regions/{regionId}/apps/{appName}/workspaceGetByResource', 'POST', header, version)
+        super(GetRegionByEngineCodeRequest, self).__init__(
+            '/regions/{regionId}/apps/{appName}/getRegionByEngineCode', 'POST', header, version)
         self.parameters = parameters
 
 
-class WorkspaceGetByResourceParameters(object):
+class GetRegionByEngineCodeParameters(object):
 
     def __init__(self,regionId, appName, ):
         """
